@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipbook Magazine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <header>
+            <h1>LUMINA</h1>
+            <p>Liquid Glass Flipbook Engine</p>
+        </header>
+
+        <main id="main-content">
+            <div id="drop-zone" class="drop-zone">
+                <div class="drop-message">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" class="upload-icon">
+                        <path d="M12 16L12 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M9 11L12 8 15 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M8 16H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M3 9C3 6.643 3.643 4.5 5.5 3C7.357 1.5 9.643 1 12 1C14.357 1 16.643 1.5 18.5 3C20.357 4.5 21 6.643 21 9V17C21 19.357 20.357 21.5 18.5 23C16.643 24.5 14.357 25 12 25C9.643 25 7.357 24.5 5.5 23C3.643 21.5 3 19.357 3 17V9Z"
+                            stroke="currentColor" stroke-width="2" opacity="0.3" />
+                        <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <span>Drop Here</span>
+                </div>
+                <input type="file" id="file-input" multiple accept="image/*,application/pdf" style="display: none;">
+            </div>
+
+            <div id="flipbook-container" class="hidden">
+                <div id="flipbook">
+                    <!-- Pages will be inserted here -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div id="controls" class="hidden">
+                <button id="prev-btn" class="nav-btn">&larr;</button>
+                <span id="page-info"></span>
+                <button id="next-btn" class="nav-btn">&rarr;</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Libraries -->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/pdf.min.js"></script>
+    <script src="lib/turn.min.js"></script>
+
+    <!-- App -->
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

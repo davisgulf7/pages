@@ -1,0 +1,21 @@
+export const imageSearchQueries: Record<string, string> = {
+  'Reading guide': 'reading guides, plastic focus guides, highlighter tape',
+  'Spell checker': 'spell checkers',
+  'Text-to-speech': 'best free text-to-speech apps',
+  'Graphic organizers': 'paper graphic organizers, mind maps, concept maps, software',
+  'Portable word processor': 'portable word processor for students',
+  'Audiobooks': 'audio books and audio book players',
+  'Calculator': 'adapted calculators for the classroom',
+  'Pencil grips': 'pencil grips',
+  'Slant board': 'slant boards for writing in the classroom',
+  'Voice recorder': 'voice recorders for students',
+  'Adapted keyboard': 'adapted keyboards for special needs',
+  'AAC communication': 'AAC communication device',
+  'Visual timers': 'visual timers for the classroom',
+  'Peer buddy/partner support': 'peer buddy/partner support in the classroom',
+  'Single switch access': 'single switch for disabilities',
+  'Preferential seating': 'preferential seating in the classroom as a learning support',
+  'Chunk tasks': 'chunk tasks as a learning disability support',
+  'Magnification': 'magnifying glasses, book magnifiers, software',
+  'Artificial intelligence': 'artificial intelligence as a learning disability support, examples'
+};

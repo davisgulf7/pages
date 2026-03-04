@@ -1,0 +1,270 @@
+/* Liquid Glass Theme */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --accent-glow: 0 0 20px rgba(0, 123, 255, 0.5);
+    --text-main: rgba(255, 255, 255, 0.9);
+    --text-muted: rgba(255, 255, 255, 0.6);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0f0f0f;
+}
+
+/* Liquid Background */
+body::before {
+    content: '';
+    position: absolute;
+    width: 150vw;
+    height: 150vh;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.4), transparent 50%),
+        radial-gradient(circle at 10% 10%, rgba(255, 50, 50, 0.2), transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(0, 100, 255, 0.3), transparent 40%),
+        conic-gradient(from 0deg at 50% 50%, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    filter: blur(80px);
+    z-index: -1;
+    animation: liquidMove 20s infinite alternate ease-in-out;
+}
+
+@keyframes liquidMove {
+    0% {
+        transform: translate(-10%, -10%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(5%, 5%) rotate(5deg);
+    }
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    position: relative;
+    top: auto;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+#main-content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    /* Prevent spillover */
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Glass Card / Drop Zone */
+.drop-zone {
+    width: 80vw;
+    height: 60vh;
+    max-width: 650px;
+    max-height: 450px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid var(--glass-highlight);
+    border-radius: 30px;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Liquid Hover Effect */
+.drop-zone::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s, transform 0.5s;
+    pointer-events: none;
+}
+
+.drop-zone:hover::after,
+.drop-zone.dragover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.drop-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.upload-icon {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    transition: all 0.4s ease;
+}
+
+.drop-zone:hover .upload-icon {
+    transform: translateY(-10px);
+    color: #fff;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+}
+
+.drop-message span {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Loop & Flipbook */
+#flipbook-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2500px;
+}
+
+/* Glass Reflection on Book */
+.page {
+    background-color: white;
+    /* Slightly less shadow for cleaner look */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+/* Controls - Glossy Pills */
+footer {
+    position: relative;
+    padding: 20px 0 40px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 20;
+    pointer-events: none;
+    /* Let clicks pass through empty space */
+}
+
+#controls {
+    pointer-events: auto;
+    /* Re-enable clicks on buttons */
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#page-info {
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    min-width: 60px;
+    text-align: center;
+}
