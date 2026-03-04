@@ -1,0 +1,1 @@
+{"name":"Lumina Flipbook PWA","short_name":"Lumina","description":"A beautiful PWA flipbook viewer for PDFs and images","start_url":"/pages/","display":"standalone","background_color":"#0f172a","theme_color":"#1e293b","lang":"en","scope":"/pages/","icons":[{"src":"/vite.svg","sizes":"any","type":"image/svg+xml"}]}
