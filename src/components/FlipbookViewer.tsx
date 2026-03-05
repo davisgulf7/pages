@@ -27,7 +27,8 @@ export default function FlipbookViewer() {
         if (!window.pdfjsLib) {
             console.warn("pdf.js not loaded yet");
         } else {
-            window.pdfjsLib.GlobalWorkerOptions.workerSrc = '/lib/pdf.worker.min.js';
+            const baseUrl = import.meta.env.BASE_URL || '/';
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = `${baseUrl}lib/pdf.worker.min.js`;
         }
     }, []);
 
