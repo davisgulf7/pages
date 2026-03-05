@@ -16,6 +16,8 @@ export default defineConfig({
         description: 'A beautiful PWA flipbook viewer for PDFs and images',
         theme_color: '#1e293b',
         background_color: '#0f172a',
+        start_url: '/pages/',
+        scope: '/pages/',
         display: 'standalone',
         icons: [
           {
